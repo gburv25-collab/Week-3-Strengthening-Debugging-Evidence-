@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 3: VS Code Debugging Evidence</title>
+  <style>
+    :root { --bg:#f6f7fb; --card:#fff; --ink:#1f2937; --muted:#5b6472; --line:#d9dee8; --accent:#253b80; --accent-soft:#eef2ff; --warn:#fff7e6; --success:#edf7ed; --code:#111827; --codeink:#f9fafb; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; line-height:1.55; background:var(--bg); color:var(--ink); }
+    .page { max-width:1100px; margin:0 auto; padding:24px; }
+    header { background:linear-gradient(135deg,#253b80,#1f2937); color:white; padding:32px 24px; border-radius:18px; margin-bottom:18px; }
+    header h1 { margin:0; font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.1; }
+    header p { margin:8px 0 0; color:#e7eaf5; font-size:1.05rem; }
+    nav { position:sticky; top:0; z-index:5; background:rgba(246,247,251,.95); backdrop-filter:blur(8px); padding:8px 0 14px; }
+    nav div { display:flex; gap:8px; overflow-x:auto; }
+    nav a { white-space:nowrap; color:var(--accent); text-decoration:none; background:white; border:1px solid var(--line); border-radius:999px; padding:8px 12px; font-size:.9rem; font-weight:700; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px; margin-bottom:18px; box-shadow:0 2px 10px rgba(17,24,39,.05); }
+    .notice { border-left:6px solid var(--accent); background:var(--accent-soft); }
+    .warning { border-left:6px solid #b45309; background:var(--warn); }
+    .success { border-left:6px solid #15803d; background:var(--success); }
+    h2 { margin-top:0; color:var(--accent); font-size:1.45rem; }
+    h3 { color:var(--ink); margin-top:1.2rem; }
+    li + li { margin-top:.3rem; }
+    table { width:100%; border-collapse:collapse; margin:14px 0; font-size:.95rem; background:white; }
+    th,td { border:1px solid var(--line); padding:10px; vertical-align:top; text-align:left; }
+    th { background:#eef2ff; color:#1f2a5a; }
+    code { font-family:Consolas, Monaco, "Courier New", monospace; background:#eef2ff; color:#111827; padding:.12rem .32rem; border-radius:5px; font-size:.95em; }
+    pre { background:var(--code); color:var(--codeink); padding:16px; border-radius:14px; overflow-x:auto; font-size:.95rem; line-height:1.45; }
+    pre code { background:transparent; color:inherit; padding:0; }
+    .step { border-left:5px solid var(--accent); padding-left:14px; margin:22px 0; }
+    .small { color:var(--muted); font-size:.95rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+    .kbd { display:inline-block; border:1px solid #a7adbb; border-bottom-width:2px; border-radius:6px; padding:.05rem .4rem; background:#fff; font-size:.9rem; }
+    footer { color:var(--muted); text-align:center; padding:20px; font-size:.9rem; }
+    @media print { body{background:white}.page{max-width:none;padding:0}nav{display:none}.card,header{box-shadow:none;break-inside:avoid}header{color:black;background:white;border:1px solid #ccc} }
+  </style>
+</head>
+<body>
+<main class="page">
+<header>
+  <h1>Programming Fundamentals</h1>
+  <p><strong>Week 3:</strong> Strengthening Assignment 1 Evidence Through VS Code Debugging</p>
+  <p>Use this page during the session to follow the VS Code debugging walkthrough and record evidence notes.</p>
+</header>
+
+<nav aria-label="Page sections"><div>
+  <a href="#intro">Introduction</a>
+  <a href="#terms">Key terms</a>
+  <a href="#starter">Starter</a>
+  <a href="#practice">Practice code</a>
+  <a href="#debugging">VS Code steps</a>
+  <a href="#evidence">Evidence notes</a>
+  <a href="#assignment">Assignment link</a>
+  <a href="#next">Next steps</a>
+</div></nav>
+
+<section id="intro" class="card">
+  <h2>Introduction</h2>
+  <p>Welcome to Session Three!</p>
+  <p>In this session, we will:</p>
+  <ul>
+    <li>describe what strong debugging evidence should include for Assignment 1</li>
+    <li>use VS Code to set breakpoints and run a debugging session</li>
+    <li>inspect variables and step through code to identify and explain unexpected behaviour</li>
+    <li>record debugging, validation and testing evidence that can be applied independently to your own Assignment 1 work</li>
+  </ul>
+  <p>This session focuses on strengthening Assignment 1 evidence through practical debugging skills. You will use VS Code to investigate a small practice program and learn how to record clearer debugging evidence using breakpoints, step-through debugging and variable inspection.</p>
+  <p>The practice code used in this session is not the assignment code. It is designed to help you understand the debugging process so that you can apply the same approach independently to your own Assignment 1 work.</p>
+</section>
+
+<section id="terms" class="card">
+  <h2>Strengthening Assignment 1 Evidence Through VS Code Debugging</h2>
+  <h3>Definition</h3>
+  <ul>
+    <li><strong>Debugging</strong> is the process of identifying, investigating and correcting defects in code.</li>
+    <li><strong>Breakpoint</strong> is a marker that pauses the program at a specific line so that you can inspect what is happening while the program is running.</li>
+    <li><strong>Step-through debugging</strong> allows you to move through code one line at a time so that you can observe how the program behaves.</li>
+    <li><strong>Variable inspection</strong> allows you to check the values stored in variables while the program is paused.</li>
+    <li><strong>IntelliSense</strong> is a VS Code feature that provides coding support such as suggestions, code completion and prompts while you write or edit code.</li>
+    <li><strong>Validation</strong> checks whether input is suitable before the program uses it.</li>
+    <li><strong>Testing</strong> checks whether the program behaves as expected using different inputs or conditions.</li>
+    <li><strong>Software quality</strong> refers to how reliable, accurate, usable, robust, maintainable and readable a software product is.</li>
+  </ul>
+  <h3>Why it matters</h3>
+  <p>Assignment 1 requires you to demonstrate and explain debugging and validation methods using small code evidence.</p>
+  <p>It is not enough to show corrected code. Stronger evidence explains how the issue was identified, what debugging method was used, what was observed, what improvement was made and how this improved quality.</p>
+  <p>Using VS Code debugging tools can help you produce stronger evidence because you can show the process of investigating code rather than only presenting the final version. Testing after changes also provides evidence that the correction works across normal, invalid and boundary inputs.</p>
+</section>
+
+<section class="card notice">
+  <h2>Session Aims</h2>
+  <ul>
+    <li>practise a structured VS Code debugging process using non-assessment practice code</li>
+    <li>strengthen how debugging observations are recorded and linked to validation, testing and software quality</li>
+  </ul>
+</section>
+
+<section class="card success">
+  <h2>At the end of this week, you should be able to:</h2>
+  <ol>
+    <li>Describe what strong debugging evidence should include for Assignment 1.</li>
+    <li>Use VS Code to set breakpoints and run a debugging session.</li>
+    <li>Inspect variables and step through code to identify and explain unexpected behaviour.</li>
+    <li>Record debugging, validation and testing evidence that can be applied independently to your own Assignment 1 work.</li>
+  </ol>
+</section>
+
+<section id="starter" class="card">
+  <h2>Starter Activity: What Could Go Wrong?</h2>
+  <p>Before using VS Code debugging tools, look at the short code example below.</p>
+  <pre><code>price = 9
+tickets = input("Enter number of tickets: ")
+
+total = price * tickets
+
+print("Total cost: £" + total)</code></pre>
+  <table><thead><tr><th>Question</th><th>Your notes</th></tr></thead><tbody>
+    <tr><td>What is the program trying to do?</td><td></td></tr>
+    <tr><td>What output would you expect if the user entered <code>2</code>?</td><td></td></tr>
+    <tr><td>What might actually happen?</td><td></td></tr>
+    <tr><td>Is this likely to be a syntax error, runtime error, logic issue, type issue or validation issue?</td><td></td></tr>
+    <tr><td>What would you check first?</td><td></td></tr>
+  </tbody></table>
+  <p class="small">This starter is not about fixing the code immediately. It is about predicting possible behaviour and deciding what evidence you would need to investigate it.</p>
+</section>
+
+<section id="practice" class="card warning">
+  <h2>Practical Code Notice</h2>
+  <p>The practical activity uses a <strong>Cinema Ticket Cost Checker</strong>. This is practice code for learning how to use the VS Code debugger.</p>
+  <p><strong>It is not the code provided for Assignment 1.</strong> You should use the process from this activity to help you independently investigate and explain your own Assignment 1 evidence.</p>
+  <p>The practice code may not crash immediately. Instead, it may produce unexpected results because user input is stored as text rather than as numbers. This makes it useful for exploring how debugging can help identify issues that are not always obvious from syntax alone.</p>
+</section>
+
+<section class="card">
+  <h2>Practice Code</h2>
+  <pre><code># Cinema Ticket Cost Checker
+# Practice code for learning how to use VS Code debugging tools
+
+adult_ticket_price = 9
+child_ticket_price = 5
+
+adult_tickets = input("Enter number of adult tickets: ")
+child_tickets = input("Enter number of child tickets: ")
+
+adult_total = adult_ticket_price * adult_tickets
+child_total = child_ticket_price * child_tickets
+
+total = adult_total + child_total
+
+print("Total cost: £" + total)</code></pre>
+</section>
+
+<section id="debugging" class="card">
+  <h2>Practical Activity: VS Code Debugging Evidence Workshop</h2>
+
+  <div class="step"><h3>Step 1: Create the Python file</h3><p>Open VS Code. Create a new file and save it as <code>week3_cinema_debugging.py</code>. Make sure the file ends in <code>.py</code>.</p></div>
+  <div class="step"><h3>Step 2: Paste in the practice code</h3><p>Paste the Cinema Ticket Cost Checker code into the file and save it.</p></div>
+
+  <div class="step">
+    <h3>Step 3: Run the code normally first</h3>
+    <ol><li>Right-click inside the file.</li><li>Select <strong>Run Python File in Terminal</strong>.</li><li>Enter adult tickets: <code>2</code> and child tickets: <code>1</code>.</li></ol>
+    <table><thead><tr><th>Question</th><th>Your notes</th></tr></thead><tbody>
+      <tr><td>What is the program trying to calculate?</td><td></td></tr>
+      <tr><td>What should the expected total be?</td><td></td></tr>
+      <tr><td>What actual output did the program produce?</td><td></td></tr>
+      <tr><td>Does the behaviour suggest a type, logic or output-format issue?</td><td></td></tr>
+      <tr><td>Did the program crash or produce an incorrect result?</td><td></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="step">
+    <h3>Step 4: Notice VS Code editor support</h3>
+    <p>Check whether VS Code gives any visual clues, such as syntax highlighting, bracket matching, IntelliSense suggestions, underlined issues, warnings, messages or terminal output.</p>
+    <table><thead><tr><th>Prompt</th><th>Your notes</th></tr></thead><tbody>
+      <tr><td>What editor support did you notice?</td><td></td></tr>
+      <tr><td>Did VS Code highlight anything useful?</td><td></td></tr>
+      <tr><td>Did IntelliSense provide any useful suggestions?</td><td></td></tr>
+      <tr><td>Did the terminal output give any useful information?</td><td></td></tr>
+      <tr><td>How could this support general error finding?</td><td></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="step">
+    <h3>Step 5: Set a breakpoint</h3>
+    <p>Find this line:</p>
+    <pre><code>adult_total = adult_ticket_price * adult_tickets</code></pre>
+    <p>Set a breakpoint by clicking in the margin to the left of the line number. A red dot should appear. If execution reaches this line, the debugger will pause before the line runs.</p>
+    <table><thead><tr><th>Question</th><th>Your notes</th></tr></thead><tbody>
+      <tr><td>Which line did you place the breakpoint on?</td><td></td></tr>
+      <tr><td>Why is this a useful place to pause the program?</td><td></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="step">
+    <h3>Step 6: Start debugging</h3>
+    <ol><li>Make sure the Python file is open.</li><li>Press <span class="kbd">F5</span>.</li><li>If VS Code asks what you want to debug, choose the Python file/debug option shown.</li><li>Enter the same test values.</li><li>The program should pause at the breakpoint if execution reaches that line.</li></ol>
+    <table><thead><tr><th>Question</th><th>Your notes</th></tr></thead><tbody>
+      <tr><td>Did the program pause at the breakpoint?</td><td></td></tr>
+      <tr><td>What line is about to run?</td><td></td></tr>
+      <tr><td>What values have already been entered?</td><td></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="step">
+    <h3>Step 7: Inspect the variables</h3>
+    <p>When the program pauses, look for the <strong>Variables</strong> panel in VS Code.</p>
+    <table><thead><tr><th>Variable</th><th>What value did you expect?</th><th>What value does VS Code show?</th><th>What does this suggest?</th></tr></thead><tbody>
+      <tr><td><code>adult_ticket_price</code></td><td></td><td></td><td></td></tr>
+      <tr><td><code>child_ticket_price</code></td><td></td><td></td><td></td></tr>
+      <tr><td><code>adult_tickets</code></td><td></td><td></td><td></td></tr>
+      <tr><td><code>child_tickets</code></td><td></td><td></td><td></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="step">
+    <h3>Step 8: Step through the calculation</h3>
+    <p>Use <strong>Step Over</strong> to move through the code one line at a time.</p>
+    <table><thead><tr><th>Question</th><th>Your notes</th></tr></thead><tbody>
+      <tr><td>What happens when the first calculation line runs?</td><td></td></tr>
+      <tr><td>What happens when the second calculation line runs?</td><td></td></tr>
+      <tr><td>Does the result match what you expected?</td><td></td></tr>
+      <tr><td>Where does the program first behave unexpectedly?</td><td></td></tr>
+      <tr><td>What does this suggest about the defect?</td><td></td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="step">
+    <h3>Step 9: Plan a correction</h3>
+    <p>Use your debugging evidence to decide what needs to change.</p>
+    <table><thead><tr><th>Prompt</th><th>Your notes</th></tr></thead><tbody>
+      <tr><td>Which values need to be numeric?</td><td></td></tr>
+      <tr><td>Where might conversion be needed?</td><td></td></tr>
+      <tr><td>What validation might be needed?</td><td></td></tr>
+      <tr><td>What invalid inputs should be rejected?</td><td></td></tr>
+      <tr><td>Should decimal values be accepted?</td><td></td></tr>
+      <tr><td>How should the output be displayed?</td><td></td></tr>
+    </tbody></table>
+    <p>Now attempt your own correction in VS Code.</p>
+  </div>
+
+  <div class="step">
+    <h3>Step 10: Test your corrected version</h3>
+    <p>Testing after changes provides evidence that the correction works across normal, invalid and boundary inputs.</p>
+    <table><thead><tr><th>Test input</th><th>Expected behaviour</th><th>Actual behaviour</th><th>Pass/Fail</th></tr></thead><tbody>
+      <tr><td>Adult: <code>2</code>, Child: <code>1</code></td><td>Calculates a sensible total</td><td></td><td></td></tr>
+      <tr><td>Adult: <code>five</code>, Child: <code>1</code></td><td>Does not crash and gives useful feedback</td><td></td><td></td></tr>
+      <tr><td>Adult: blank, Child: <code>1</code></td><td>Does not crash and gives useful feedback</td><td></td><td></td></tr>
+      <tr><td>Adult: <code>0</code>, Child: <code>1</code></td><td>Decide whether this should be accepted</td><td></td><td></td></tr>
+      <tr><td>Adult: <code>-1</code>, Child: <code>1</code></td><td>Decide whether this should be accepted</td><td></td><td></td></tr>
+      <tr><td>Adult: <code>1.5</code>, Child: <code>1</code></td><td>Decide whether decimal values should be accepted</td><td></td><td></td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+<section id="evidence" class="card">
+  <h2>Debugging Evidence Notes</h2>
+  <p>Use your debugging activity to prepare evidence notes. These do not need to be final polished paragraphs.</p>
+  <table><thead><tr><th>Evidence area</th><th>Your notes</th></tr></thead><tbody>
+    <tr><td>What was the original defect or issue?</td><td></td></tr>
+    <tr><td>What type of defect or issue was it?</td><td></td></tr>
+    <tr><td>How did you identify the issue?</td><td></td></tr>
+    <tr><td>Which debugging method did you use?</td><td></td></tr>
+    <tr><td>What did you observe in VS Code?</td><td></td></tr>
+    <tr><td>What correction did you make or plan?</td><td></td></tr>
+    <tr><td>What validation improvement did you add or plan?</td><td></td></tr>
+    <tr><td>What testing evidence could you include?</td><td></td></tr>
+    <tr><td>What evidence could you include in your report?</td><td></td></tr>
+    <tr><td>How did the correction improve software quality?</td><td></td></tr>
+  </tbody></table>
+  <h3>Draft note structure</h3>
+  <pre><code>The original code produced an unexpected result or error because...
+
+I identified this by...
+
+The debugging method I used was...
+
+In VS Code, I observed that...
+
+To correct or improve the code, I...
+
+I tested the revised version by...
+
+This could improve the quality of the application because...</code></pre>
+</section>
+
+<section id="assignment" class="card">
+  <h2>Assignment 1 Context</h2>
+  <p>For Assignment 1, you are developing an <strong>Evaluative Report with Debugging Evidence</strong>.</p>
+  <table><thead><tr><th>Requirement</th><th>What this means</th></tr></thead><tbody>
+    <tr><td>Compare programming languages and language levels</td><td>Discuss how different languages are used and how they differ in abstraction, purpose and suitability.</td></tr>
+    <tr><td>Explain language suitability</td><td>Consider development context, readability, maintainability, performance, libraries, platform compatibility and developer/community support.</td></tr>
+    <tr><td>Demonstrate debugging methods</td><td>Show how defects can be identified and investigated using methods such as breakpoints, step-through debugging, variable inspection, IntelliSense or error messages.</td></tr>
+    <tr><td>Demonstrate validation methods</td><td>Explain how input can be checked before the program uses it and how this improves quality.</td></tr>
+    <tr><td>Use small code evidence</td><td>Use screenshots, code extracts or annotated evidence to show debugging and validation activity.</td></tr>
+    <tr><td>Include testing evidence</td><td>Show how the revised code was tested using normal, invalid and boundary inputs.</td></tr>
+    <tr><td>Explain software quality improvement</td><td>Explain how the correction improves reliability, accuracy, usability, robustness, maintainability or readability.</td></tr>
+  </tbody></table>
+</section>
+
+<section class="card">
+  <h2>Extension Activity: Strengthening Evidence Notes</h2>
+  <p>For learners who complete the core activities early, choose one piece of evidence from today’s practical work and strengthen it.</p>
+  <table><thead><tr><th>Prompt</th><th>Your notes</th></tr></thead><tbody>
+    <tr><td>What did the original code do?</td><td></td></tr>
+    <tr><td>What did you expect it to do?</td><td></td></tr>
+    <tr><td>What actually happened?</td><td></td></tr>
+    <tr><td>What debugging method helped you investigate it?</td><td></td></tr>
+    <tr><td>What did you observe in VS Code?</td><td></td></tr>
+    <tr><td>What does this suggest about the defect?</td><td></td></tr>
+    <tr><td>What could be improved?</td><td></td></tr>
+    <tr><td>What testing evidence could support this?</td><td></td></tr>
+    <tr><td>Which software quality factor does this relate to?</td><td></td></tr>
+    <tr><td>What screenshot or code extract could support this?</td><td></td></tr>
+  </tbody></table>
+</section>
+
+<section id="next" class="card">
+  <h2>Week 3 Reminder</h2>
+  <p>You should begin checking whether your evidence includes:</p>
+  <ul>
+    <li>language comparison and discussion of language levels</li>
+    <li>debugging, validation and testing notes</li>
+    <li>code extracts or screenshots with explanations of what they show</li>
+    <li>software quality explanations</li>
+  </ul>
+  <h2>Next week</h2>
+  <p>Next week, we will continue developing Assignment 1 readiness by improving evidence selection, explanation and report quality.</p>
+  <p>You should bring your current Assignment 1 draft or notes, language comparison notes, debugging evidence, validation evidence, testing evidence and questions about improving your final submission.</p>
+</section>
+
+<section class="card">
+  <h2>Additional Resources</h2>
+  <div class="grid">
+    <div><h3>Programming and coding setup</h3><ul><li><strong>Using VS Code for Programming</strong></li><li><strong>Python and C++ Coding Basics</strong></li></ul></div>
+    <div><h3>Assignment 1 support</h3><ul><li><strong>1. Programming Fundamentals: Language Comparison and Debugging</strong></li><li><strong>4. Testing and Debugging</strong></li><li><strong>5. Compilation: Language Features, Code Generation, Native Code and Managed Code</strong></li><li><strong>8. Common Coding Errors and Fixes</strong></li></ul></div>
+    <div><h3>Key assignment resources</h3><ul><li><strong>Assignment 1 Brief</strong></li><li><strong>Assignment 1 Learner Support Pack</strong></li><li><strong>Programming Fundamentals Module Specification</strong></li></ul></div>
+  </div>
+</section>
+
+<section class="card notice">
+  <h2>Suggested iframe embed</h2>
+  <p>After uploading this file to a web-accessible location, embed it in Canvas using an iframe like this:</p>
+  <pre><code>&lt;iframe src="YOUR-PUBLISHED-PAGE-URL"
+        width="100%"
+        height="900"
+        style="border:0;"
+        loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+</section>
+
+<footer>Week 3 · Programming Fundamentals · VS Code Debugging Evidence Workshop</footer>
+</main>
+</body>
+</html>
